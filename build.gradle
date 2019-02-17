@@ -1,0 +1,50 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id "io.spring.dependency-management" version "1.0.5.RELEASE"
+}
+
+group 'org.timby.zipcrypto'
+version '1.0.0'
+
+apply plugin: 'java'
+//apply plugin: 'groovy'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'zip-crypto-cli'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter'
+    compile 'org.apache.logging.log4j:log4j-api'
+    compile 'org.apache.logging.log4j:log4j-core'
+    //compile 'com.github.joshjdevl.libsodiumjni:libsodium-jni:2.0.1'
+    compile ('com.muquit.libsodiumjna:libsodium-jna:1.0.4') {
+        exclude group: 'org.slf4j'
+    }
+    compile 'com.google.guava:guava:27.0.1-jre'
+    compile 'commons-io:commons-io:2.6'
+
+    // compile "org.codehaus.groovy:groovy-all:2.4.15"
+    // testCompile "org.spockframework:spock-core:1.2-groovy-2.4"
+}
+
