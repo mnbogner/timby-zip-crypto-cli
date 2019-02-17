@@ -76,9 +76,10 @@ public class Application implements CommandLineRunner {
             libraryPath = "/usr/local/lib/libsodium.dylib";
             logger.info("Library path in Mac: " + libraryPath);
         } else if (Platform.isLinux()) {
-            libraryPath = "/usr/local/lib/libsodium.dylib";
+            libraryPath = "/usr/local/lib/libsodium.so";
             logger.info("Library path in Linux: " + libraryPath);
         } else {
+            // TODO: I don't have a Window machine, nor do I care at this moment
             throw new Exception("Window is not supported yet");
         }
         logger.info("Initialize libsodium...");
